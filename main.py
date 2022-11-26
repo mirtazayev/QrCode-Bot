@@ -87,12 +87,9 @@ async def error(message: types.Message):
         await message.answer('Отправьте текст, который вы хотите сгенерировать QR-код.')
         await Form.Text.set()
     elif message.text != "/upload":
-        await message.answer('/create - Чтобы создать QR-код\n'
-                             '/upload - Читать qr-код или просто отправь мне Qr код!')
+        await main_menu(message)
     else:
-        await message.answer('/create - Чтобы создать QR-код\n'
-                             '/upload - Читать qr-код или просто отправь мне Qr код!')
-
+        await main_menu(message)
 
 @dp.message_handler(state=Form.Text, content_types=ContentType.ANY)
 async def create_qr_code(message: Message, state: FSMContext):
